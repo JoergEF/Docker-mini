@@ -25,4 +25,4 @@ echo "search kurs.iad" >> /etc/resolv.conf
 
 # Gitlab-Zertifikat importieren
 [ -d /etc/docker/certs.d/gitlab:5050 ] || mkdir -p /etc/docker/certs.d/gitlab:5050
-cp /etc/gitlab-runner/certs/gitlab.crt /etc/docker/certs.d/gitlab\:5050/
+openssl s_client -showcerts -connect gitlab:443 < /dev/null 2>/dev/null | openssl x509 -outform PEM > /etc/docker/certs.d/gitlab\:5050/gitlab.crt
